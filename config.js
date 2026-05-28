@@ -7,7 +7,7 @@ export const WEDDING_DATE = "2026년 07월 25일, 토요일 오후 1시 10분";
 export const WEDDING_LOCATION = "규수당 문래";
 
 export const GROOM_NAME = "김윤겸";
-export const GROOM_ACCOUNT_NUMBER = "○○은행 ***-***-******";
+export const GROOM_ACCOUNT_NUMBER = "카카오뱅크 3333-06-9532287";
 export const GROOM_FATHER_NAME = "김영석";
 export const GROOM_FATHER_ACCOUNT_NUMBER = "○○은행 ***-***-******";
 export const GROOM_MOTHER_NAME = "조현중";
