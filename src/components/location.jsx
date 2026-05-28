@@ -103,6 +103,8 @@ const Location = () => {
             className="root_daum_roughmap root_daum_roughmap_landing"
         ></Map>
         <Content>
+          [주소]
+          <br />
           서울 영등포구 문래동3가 55-16
           <br />
           SK리더스뷰 2층 규수당
@@ -121,9 +123,7 @@ const Location = () => {
           2호선 문래역 하차
           [도보] 5번 출구 전방 직진 300M
           <br />
-          <br />
           [셔틀버스] 4번출구(뒷쪽) 셔틀버스 운행
-          <br />
           <br />
           [자차 이용시]
           네비게이션: 규수당 문래점 또는 문래동 SK리더스뷰 검색

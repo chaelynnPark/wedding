@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import ImageGallery from "react-image-gallery";
 import { Divider } from "antd";
 import styled from "styled-components";
@@ -25,6 +25,28 @@ const Title = styled.p`
   opacity: 0.85;
   margin-bottom: 0;
   text-align: center;
+`;
+
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  cursor: pointer;
+`;
+
+const ExpandedImg = styled.img`
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  cursor: default;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 `;
 
 const images = [
@@ -62,7 +84,41 @@ const images = [
   },
 ];
 
+const SWIPE_THRESHOLD = 50;
+
 const Gallery = () => {
+  const [expandedIndex, setExpandedIndex] = useState(null);
+  const currentIndexRef = useRef(0);
+  const touchStartXRef = useRef(0);
+
+  const handleSlide = (index) => {
+    currentIndexRef.current = index;
+  };
+
+  const handleImageClick = () => {
+    setExpandedIndex(currentIndexRef.current);
+  };
+
+  const handleOverlayClick = (event) => {
+    if (event.target === event.currentTarget) {
+      setExpandedIndex(null);
+    }
+  };
+
+  const handleTouchStart = (event) => {
+    touchStartXRef.current = event.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (event) => {
+    const deltaX = event.changedTouches[0].clientX - touchStartXRef.current;
+    if (Math.abs(deltaX) < SWIPE_THRESHOLD) return;
+    setExpandedIndex((prev) => {
+      if (prev === null) return prev;
+      if (deltaX < 0) return (prev + 1) % images.length;
+      return (prev - 1 + images.length) % images.length;
+    });
+  };
+
   return (
       <Wrapper>
         <Divider style={{ marginTop: 0, marginBottom: 32 }} plain>
@@ -72,7 +128,19 @@ const Gallery = () => {
             showPlayButton={false}
             showFullscreenButton={false}
             items={images}
+            onClick={handleImageClick}
+            onSlide={handleSlide}
         />
+        {expandedIndex !== null && (
+            <Overlay onClick={handleOverlayClick}>
+              <ExpandedImg
+                  src={images[expandedIndex].original}
+                  alt=""
+                  onTouchStart={handleTouchStart}
+                  onTouchEnd={handleTouchEnd}
+              />
+            </Overlay>
+        )}
       </Wrapper>
   );
 };
