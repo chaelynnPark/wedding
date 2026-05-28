@@ -1,57 +1,63 @@
 import React from "react";
 import styled from "styled-components";
-import QuotePaper from "../assets/Quote.png";
-import Flower from "../assets/flower1.png";
 
 const Wrapper = styled.div`
-  padding-top: 42px;
-  padding-left: 42px;
-  padding-right: 42px;
-  width: 100%;
-  overflow: hidden;
+  padding: 96px 0 64px;
+  width: 88%;
   margin: 0 auto;
+`;
+
+const Card = styled.div`
   position: relative;
+  padding: 36px 24px 28px;
+  background: #fff;
+  border: 1px solid var(--line);
 `;
 
-const Content = styled.span`
-  display: block;
-  margin: 0 auto;
-  font-size: 1.3rem;
-  font-family: "mom_to_daughter";
+const QuoteMark = styled.span`
+  position: absolute;
+  top: -18px;
+  left: 16px;
+  background: var(--bg);
+  padding: 0 10px;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+`;
+
+const Body = styled.p`
+  font-size: 1.05rem;
+  line-height: 2;
+  color: var(--ink);
+  margin: 0;
   text-align: center;
-  color: var(--title-color);
-  line-height: 2.25rem;
-  opacity: 0.75;
-  background-image: url(${QuotePaper});
-  background-repeat: no-repeat;
-  background-position: center;
+  font-weight: 400;
 `;
 
-const Image = styled.img`
-  display: block;
-  margin: 0 auto;
-  width: 1.375rem;
-  padding-bottom: 42px;
+const Author = styled.div`
+  margin-top: 20px;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  color: var(--ink-mute);
+  text-align: center;
 `;
 
-const Quote = () => {
-  return (
-    <Wrapper>
-      <Image src={Flower} data-aos="fade-up" />
-      <Content data-aos="fade-up">
-        장담하건대. 세상이 다 겨울이어도
+const Quote = () => (
+  <Wrapper>
+    <Card data-aos="fade-up">
+      <QuoteMark>QUOTE</QuoteMark>
+      <Body>
+        장담하건대,
         <br />
-        우리 사랑은 늘봄처럼 따뜻하고
+        세상이 다 겨울이어도
         <br />
-        간혹, 여름처럼 뜨거울 겁니다
+        우리 사랑은 늘 봄처럼 따뜻하고
         <br />
-        <br />
-        - 이수동, (사랑가) -
-        <br />
-        <br />
-      </Content>
-    </Wrapper>
-  );
-};
+        간혹, 여름처럼 뜨거울 겁니다.
+      </Body>
+      <Author>— 이수동, 사랑가 —</Author>
+    </Card>
+  </Wrapper>
+);
 
 export default Quote;

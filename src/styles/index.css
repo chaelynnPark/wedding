@@ -1,12 +1,34 @@
-@import url("https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Nanum+Pen+Script&display=swap");
 
 :root {
-  --title-color: #d97d83;
+  --bg: #faf8f5;
+  --bg-deep: #f0ece6;
+  --ink: #1a1a1a;
+  --ink-soft: #5a5a5a;
+  --ink-mute: #9b9893;
+  --line: #e6e1d8;
+  --accent: #6b7d6a;
+  --title-color: #1a1a1a;
 }
+
 * {
-  font-family: "Hi Melody", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: "Gowun Dodum", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Apple SD Gothic Neo", "Noto Sans KR",
+    sans-serif;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.mono {
+  font-family: "Gowun Dodum", sans-serif;
+  letter-spacing: 0.02em;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-deep);
+  -webkit-text-size-adjust: 100%;
 }
 
 /* 카카오맵 버튼 없애기 */
@@ -17,6 +39,7 @@
 .root_daum_roughmap {
   width: 100% !important;
   max-height: 240px !important;
+  border: 1px solid var(--line) !important;
 }
 .root_daum_roughmap_landing {
   margin: auto !important;
@@ -26,39 +49,14 @@
 }
 
 @keyframes fadein {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
-@-moz-keyframes fadein {
-  /* Firefox */
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@-webkit-keyframes fadein {
-  /* Safari and Chrome */
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@-o-keyframes fadein {
-  /* Opera */
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+
+@keyframes scrollHint {
+  0%   { transform: translateY(0);    opacity: 0.6; }
+  50%  { transform: translateY(6px);  opacity: 1;   }
+  100% { transform: translateY(0);    opacity: 0.6; }
 }
 
 /* 폰트 적용 */

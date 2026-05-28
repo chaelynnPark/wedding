@@ -1,49 +1,57 @@
 import React, { useEffect } from "react";
-import { Divider } from "antd";
 import styled from "styled-components";
-import Flower from "../assets/flower2.png";
+import SectionLabel from "./sectionLabel";
 
 const Wrapper = styled.div`
-  padding-top: 42px;
-  width: 70%;
+  padding-top: 96px;
+  width: 88%;
   margin: 0 auto;
-`;
-
-const Title = styled.span`
-  font-size: 1rem;
-  color: var(--title-color);
-  font-weight: bold;
-  opacity: 0.85;
-  margin-bottom: 0;
-`;
-
-const Image = styled.img`
-  display: block;
-  margin: 0 auto;
-  width: 1.375rem;
-  padding-bottom: 42px;
-`;
-
-const Content = styled.p`
-  font-size: 0.875rem;
-  line-height: 1.75;
-  opacity: 0.75;
-  width: 100%;
-  text-align: center;
-  padding-top: 42px;
-  padding-bottom: 42px;
-  margin: 0;
 `;
 
 const Map = styled.div`
   width: 100%;
   padding: 0;
+  margin-bottom: 24px;
+`;
+
+const AddressBlock = styled.div`
+  border-top: 1px solid var(--line);
+  padding: 20px 0;
+  margin-bottom: 8px;
+`;
+
+const Row = styled.div`
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: 12px;
+  padding: 10px 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  border-bottom: 1px solid var(--line);
+
+  &:last-child {
+    border-bottom: none;
+  }
+`;
+
+const Key = styled.span`
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  padding-top: 4px;
+`;
+
+const Val = styled.div`
+  color: var(--ink-soft);
+`;
+
+const Strong = styled.div`
+  color: var(--ink);
+  font-weight: 500;
+  margin-bottom: 4px;
 `;
 
 const Location = () => {
-  // 카카오 맵 불러오기
-
-  // <!-- 3. 실행 스크립트 -->
   const executeScript = () => {
     const scriptTag = document.createElement("script");
     const inlineScript = document.createTextNode(`new daum.roughmap.Lander({
@@ -56,8 +64,6 @@ const Location = () => {
     document.body.appendChild(scriptTag);
   };
 
-  // <!-- 2. 설치 스크립트 * 지도 퍼가기 서비스를 2개 이상 넣을 경우, 설치 스크립트는 하나만 삽입합니다. -->
-  // document.write 문제가 발생해서 해당 파일을 직접 가져온다음 수정했음
   const InstallScript = () => {
     (function () {
       let c = window.location.protocol === "https:" ? "https:" : "http:";
@@ -73,12 +79,11 @@ const Location = () => {
         url_protocal: c,
       };
       let b =
-          c +
-          "//t1.daumcdn.net/kakaomapweb/place/jscss/roughmap/" +
-          a +
-          "/roughmapLander.js";
+        c +
+        "//t1.daumcdn.net/kakaomapweb/place/jscss/roughmap/" +
+        a +
+        "/roughmapLander.js";
 
-      // document.write -> doumnet.body.append로 수정
       const scriptTag = document.createElement("script");
       scriptTag.src = b;
       document.body.append(scriptTag);
@@ -93,45 +98,52 @@ const Location = () => {
   }, [InstallScript]);
 
   return (
-      <Wrapper>
-        <Divider plain style={{ marginTop: 0, marginBottom: 32 }}>
-          <Title>오시는 길</Title>
-        </Divider>
-        <Image src={Flower} />
-        <Map
-            id="daumRoughmapContainer1779717992374"
-            className="root_daum_roughmap root_daum_roughmap_landing"
-        ></Map>
-        <Content>
-          [주소]
-          <br />
-          서울 영등포구 문래동3가 55-16
-          <br />
-          SK리더스뷰 2층 규수당
-          <br />
-          <br />
-          <Title>버스 이용시</Title>
-          <br />
-          [간선버스] 641
-          [지선버스] 62112, 6516, 6625
-          [마을버스] 영등포05, 영등포12
-          문래역 하차
-          <br />
-          <br />
-          <Title>지하철 이용시</Title>
-          <br />
-          2호선 문래역 하차
-          [도보] 5번 출구 전방 직진 300M
-          <br />
-          [셔틀버스] 4번출구(뒷쪽) 셔틀버스 운행
-          <br />
-          [자차 이용시]
-          네비게이션: 규수당 문래점 또는 문래동 SK리더스뷰 검색
-          [주소검색]
-          서울 영등포구 문래로 164
-          서울 영등포구 문래동3가 55-16
-        </Content>
-      </Wrapper>
+    <Wrapper>
+      <SectionLabel no="03" en="LOCATION" kr="오시는 길" />
+      <Map
+        id="daumRoughmapContainer1779717992374"
+        className="root_daum_roughmap root_daum_roughmap_landing"
+      />
+      <AddressBlock>
+        <Row>
+          <Key>VENUE</Key>
+          <Val>
+            <Strong>규수당 문래</Strong>
+            SK리더스뷰 2층
+          </Val>
+        </Row>
+        <Row>
+          <Key>ADDRESS</Key>
+          <Val>
+            서울 영등포구 문래로 164<br />
+            (문래동3가 55-16)
+          </Val>
+        </Row>
+        <Row>
+          <Key>SUBWAY</Key>
+          <Val>
+            <Strong>2호선 문래역</Strong>
+            5번 출구 직진 300m<br />
+            4번 출구(뒷쪽) 셔틀버스 운행
+          </Val>
+        </Row>
+        <Row>
+          <Key>BUS</Key>
+          <Val>
+            <Strong>문래역 하차</Strong>
+            간선 641 · 지선 6212 6516 6625<br />
+            마을 영등포05 · 영등포12
+          </Val>
+        </Row>
+        <Row>
+          <Key>CAR</Key>
+          <Val>
+            네비게이션 검색<br />
+            "규수당 문래점" 또는 "문래동 SK리더스뷰"
+          </Val>
+        </Row>
+      </AddressBlock>
+    </Wrapper>
   );
 };
 

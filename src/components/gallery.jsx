@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import ImageGallery from "react-image-gallery";
-import { Divider } from "antd";
 import styled from "styled-components";
+import SectionLabel from "./sectionLabel";
 
 import GalleryPhoto1 from "../assets/gallery_photo_1.jpg";
 import GalleryPhoto2 from "../assets/gallery_photo_2.jpg";
@@ -13,18 +13,9 @@ import GalleryPhoto7 from "../assets/gallery_photo_7.jpeg";
 import GalleryPhoto8 from "../assets/gallery_photo_8.jpeg";
 
 const Wrapper = styled.div`
-  padding-top: 42px;
-  width: 70%;
+  padding-top: 96px;
+  width: 88%;
   margin: 0 auto;
-`;
-
-const Title = styled.p`
-  font-size: 1rem;
-  color: var(--title-color);
-  font-weight: bold;
-  opacity: 0.85;
-  margin-bottom: 0;
-  text-align: center;
 `;
 
 const Overlay = styled.div`
@@ -121,9 +112,7 @@ const Gallery = () => {
 
   return (
       <Wrapper>
-        <Divider style={{ marginTop: 0, marginBottom: 32 }} plain>
-          <Title>우리의 아름다운 순간</Title>
-        </Divider>
+        <SectionLabel no="02" en="GALLERY" kr="우리의 순간들" />
         <ImageGallery
             showPlayButton={false}
             showFullscreenButton={false}

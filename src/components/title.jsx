@@ -1,62 +1,115 @@
 import React from "react";
 import styled from "styled-components";
 import {
-  WEDDING_DATE,
   WEDDING_LOCATION,
   GROOM_NAME,
   BRIDE_NAME,
 } from "../../config.js";
 
 const Layout = styled.div`
-  width: 70%;
-  overflow: hidden;
+  width: 88%;
   margin: 0 auto;
+  padding-top: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
 `;
 
-const TitleWrapper = styled.div`
-  width: 100%;
+const TopMono = styled.span`
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  color: var(--accent);
+`;
+
+const Names = styled.h1`
+  font-size: 1.7rem;
+  font-weight: 500;
+  margin: 0;
+  letter-spacing: -0.01em;
   text-align: center;
-  padding-top: 42px;
-  font-weight: 500 !important;
-  color: var(--title-color);
-  animation: fadein 3s;
-  -moz-animation: fadein 3s; /* Firefox */
-  -webkit-animation: fadein 3s; /* Safari and Chrome */
-  -o-animation: fadein 3s; /* Opera */
+  line-height: 1.4;
 `;
 
-const WeddingInvitation = styled.p`
-  font-size: 0.825rem;
-  opacity: 0.45;
-  margin-bottom: 16px;
+const Card = styled.div`
+  width: 100%;
+  border: 1px solid var(--line);
+  background: #fff;
+  padding: 24px 20px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  row-gap: 10px;
+  font-size: 0.75rem;
+  text-align: center;
+  color: var(--ink-soft);
 `;
 
-const GroomBride = styled.p`
-  font-size: 1.5rem;
-  font-weight: bold;
-  opacity: 0.9;
-  margin-bottom: 16px;
+const DayHead = styled.span`
+  color: var(--ink-mute);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+
+  &:first-child { color: #c98a92; }
 `;
 
-const Schedule = styled.p`
-  font-size: 1.06rem;
-  opacity: 0.65;
-  margin-bottom: 24px;
+const Day = styled.span`
+  padding: 4px 0;
 `;
+
+const Highlight = styled(Day)`
+  background: var(--accent);
+  color: #fff;
+  border-radius: 999px;
+  font-weight: 500;
+`;
+
+const Meta = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+`;
+
+const Divider = styled.span`
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: var(--line);
+`;
+
 const Title = () => {
+  // 2026-07-25 is Saturday. July 2026 starts on Wednesday.
+  const days = ["S", "M", "T", "W", "T", "F", "S"];
+  const leading = 3; // empty cells before July 1 (Wed)
   return (
-    <Layout>
-      <TitleWrapper>
-        <WeddingInvitation>WEDDING INVITATION</WeddingInvitation>
-        <GroomBride>
-          {GROOM_NAME} &#38; {BRIDE_NAME}
-        </GroomBride>
-        <Schedule>
-          {WEDDING_DATE}
-          <br />
-          {WEDDING_LOCATION}
-        </Schedule>
-      </TitleWrapper>
+    <Layout data-aos="fade-up">
+      <TopMono>2026 · WEDDING DAY</TopMono>
+      <Names>
+        {GROOM_NAME} <span style={{ color: "var(--ink-mute)" }}>&amp;</span> {BRIDE_NAME}
+      </Names>
+      <Card>
+        {days.map((d, i) => (
+          <DayHead key={`h${i}`}>{d}</DayHead>
+        ))}
+        {Array.from({ length: leading }).map((_, i) => (
+          <Day key={`e${i}`} />
+        ))}
+        {Array.from({ length: 31 }).map((_, i) => {
+          const n = i + 1;
+          if (n === 25) return <Highlight key={n}>{n}</Highlight>;
+          return <Day key={n}>{n}</Day>;
+        })}
+      </Card>
+      <Meta>
+        <span>2026 . 07 . 25  SAT</span>
+        <Divider />
+        <span>PM 01 : 10</span>
+        <Divider />
+        <span>{WEDDING_LOCATION.toUpperCase()}</span>
+      </Meta>
     </Layout>
   );
 };
