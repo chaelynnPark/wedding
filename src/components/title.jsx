@@ -67,8 +67,8 @@ const Meta = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  font-size: 0.75rem;
+  gap: 10px;
+  font-size: 1.05rem;
   letter-spacing: 0.1em;
   color: var(--ink-soft);
 `;
