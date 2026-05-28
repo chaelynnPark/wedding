@@ -11,6 +11,8 @@ import GalleryPhoto5 from "../assets/gallery_photo_5.jpg";
 import GalleryPhoto6 from "../assets/gallery_photo_6.jpg";
 import GalleryPhoto7 from "../assets/gallery_photo_7.jpeg";
 import GalleryPhoto8 from "../assets/gallery_photo_8.jpeg";
+import GalleryPhoto9 from "../assets/gallery_photo_9.jpg";
+import GalleryPhoto10 from "../assets/gallery_photo_10.jpg";
 
 const Wrapper = styled.div`
   padding-top: 96px;
@@ -72,6 +74,14 @@ const images = [
   {
     original: GalleryPhoto8,
     thumbnail: GalleryPhoto8,
+  },
+  {
+    original: GalleryPhoto9,
+    thumbnail: GalleryPhoto9,
+  },
+  {
+    original: GalleryPhoto10,
+    thumbnail: GalleryPhoto10,
   },
 ];
 

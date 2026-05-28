@@ -47,15 +47,19 @@ const Quote = () => (
     <Card data-aos="fade-up">
       <QuoteMark>QUOTE</QuoteMark>
       <Body>
-        장담하건대,
+        인생은 모두가
         <br />
-        세상이 다 겨울이어도
+        함께 하는 여행이다.
         <br />
-        우리 사랑은 늘 봄처럼 따뜻하고
+        매일매일 사는 동안
         <br />
-        간혹, 여름처럼 뜨거울 겁니다.
+        우리가 할 수 있는 건
+        <br />
+        최선을 다해
+        <br />
+        이 멋진 여행을 만끽하는 것이다.
       </Body>
-      <Author>— 이수동, 사랑가 —</Author>
+      <Author>— 영화, 어바웃타임 —</Author>
     </Card>
   </Wrapper>
 );
