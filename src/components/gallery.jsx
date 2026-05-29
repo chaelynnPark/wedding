@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ImageGallery from "react-image-gallery";
 import styled from "styled-components";
 import SectionLabel from "./sectionLabel";
@@ -33,6 +33,7 @@ const Overlay = styled.div`
   justify-content: center;
   z-index: 9999;
   cursor: pointer;
+  overscroll-behavior: contain;
 `;
 
 const ExpandedImg = styled.img`
@@ -96,6 +97,27 @@ const Gallery = () => {
   const [expandedIndex, setExpandedIndex] = useState(null);
   const currentIndexRef = useRef(0);
   const touchStartXRef = useRef(0);
+  const multiTouchRef = useRef(false);
+
+  useEffect(() => {
+    if (expandedIndex === null) return undefined;
+    // 확대 보기가 열려 있는 동안 배경 페이지 스크롤을 잠금
+    const { overflow } = document.body.style;
+    const scrollY = window.scrollY;
+    document.body.style.overflow = "hidden";
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    return () => {
+      document.body.style.overflow = overflow;
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      window.scrollTo(0, scrollY);
+    };
+  }, [expandedIndex]);
 
   const handleSlide = (index) => {
     currentIndexRef.current = index;
@@ -112,10 +134,27 @@ const Gallery = () => {
   };
 
   const handleTouchStart = (event) => {
+    if (event.touches.length > 1) {
+      // 핀치(두 손가락 이상) 제스처 시작 → 확대/축소이므로 페이지 이동하지 않음
+      multiTouchRef.current = true;
+      return;
+    }
+    multiTouchRef.current = false;
     touchStartXRef.current = event.touches[0].clientX;
   };
 
+  const handleTouchMove = (event) => {
+    if (event.touches.length > 1) {
+      multiTouchRef.current = true;
+    }
+  };
+
   const handleTouchEnd = (event) => {
+    // 핀치 줌이 포함됐거나 아직 화면에 손가락이 남아있으면 페이지를 넘기지 않음
+    if (multiTouchRef.current || event.touches.length > 0) {
+      if (event.touches.length === 0) multiTouchRef.current = false;
+      return;
+    }
     const deltaX = event.changedTouches[0].clientX - touchStartXRef.current;
     if (Math.abs(deltaX) < SWIPE_THRESHOLD) return;
     setExpandedIndex((prev) => {
@@ -141,6 +180,7 @@ const Gallery = () => {
                   src={images[expandedIndex].original}
                   alt=""
                   onTouchStart={handleTouchStart}
+                  onTouchMove={handleTouchMove}
                   onTouchEnd={handleTouchEnd}
               />
             </Overlay>

@@ -79,16 +79,25 @@ const ModalRow = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 12px;
   padding: 14px 0;
   border-bottom: 1px solid var(--line);
 
   &:last-child { border-bottom: none; }
 `;
 
+const NameCell = styled.span`
+  display: flex;
+  align-items: baseline;
+  flex-shrink: 0;
+  white-space: nowrap;
+`;
+
 const PersonName = styled.span`
   font-size: 0.95rem;
   color: var(--ink);
   font-weight: 500;
+  white-space: nowrap;
 `;
 
 const PersonRole = styled.span`
@@ -107,14 +116,22 @@ const ModalHint = styled.p`
 
 const AccountRow = ({ role, name, account }) => (
   <ModalRow>
-    <span>
+    <NameCell>
       <PersonRole>{role}</PersonRole>
       <PersonName>{name}</PersonName>
-    </span>
+    </NameCell>
     <CopyToClipboard text={account}>
       <Button
         type="text"
-        style={{ padding: 0, fontSize: "0.85rem", color: "#5a5a5a" }}
+        style={{
+          padding: 0,
+          fontSize: "0.85rem",
+          color: "#5a5a5a",
+          height: "auto",
+          whiteSpace: "normal",
+          textAlign: "right",
+          minWidth: 0,
+        }}
         onClick={() => message.success("계좌번호가 복사되었습니다.")}
       >
         {account} ⧉
