@@ -44,19 +44,19 @@ const Author = styled.div`
 
 const Quote = () => (
     <Wrapper>
-      <Image src={Flower} data-aos="fade-up" />
-      <Content data-aos="fade-up">
-        장담하건대. 세상이 다 겨울이어도
-        <br />
-        우리 사랑은 늘봄처럼 따뜻하고
-        <br />
-        간혹, 여름처럼 뜨거울 겁니다
-        <br />
-        <br />
-        - 이수동, (사랑가) -
-        <br />
-        <br />
-      </Content>
+        <Card data-aos="fade-up">
+            <QuoteMark>QUOTE</QuoteMark>
+            <Body>
+                장담하건대,
+                <br />
+                세상이 다 겨울이어도
+                <br />
+                우리 사랑은 늘 봄처럼 따뜻하고
+                <br />
+                간혹, 여름처럼 뜨거울 겁니다.
+            </Body>
+            <Author>— 이수동, 사랑가 —</Author>
+        </Card>
     </Wrapper>
 );
 
