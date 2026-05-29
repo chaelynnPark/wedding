@@ -11,8 +11,9 @@ import GalleryPhoto5 from "../assets/gallery_photo_5.jpg";
 import GalleryPhoto6 from "../assets/gallery_photo_6.jpg";
 import GalleryPhoto7 from "../assets/gallery_photo_7.jpeg";
 import GalleryPhoto8 from "../assets/gallery_photo_8.jpeg";
-import GalleryPhoto9 from "../assets/gallery_photo_9.jpg";
-import GalleryPhoto10 from "../assets/gallery_photo_10.jpg";
+import GalleryPhoto9 from "../assets/gallery_photo_9.jpeg";
+import GalleryPhoto10 from "../assets/gallery_photo_10.jpeg";
+import GalleryPhoto11 from "../assets/gallery_photo_11.jpeg";
 
 const Wrapper = styled.div`
   padding-top: 96px;
@@ -83,6 +84,10 @@ const images = [
     original: GalleryPhoto10,
     thumbnail: GalleryPhoto10,
   },
+  {
+    original: GalleryPhoto11,
+    thumbnail: GalleryPhoto11
+  }
 ];
 
 const SWIPE_THRESHOLD = 50;

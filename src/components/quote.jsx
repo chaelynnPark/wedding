@@ -43,25 +43,21 @@ const Author = styled.div`
 `;
 
 const Quote = () => (
-  <Wrapper>
-    <Card data-aos="fade-up">
-      <QuoteMark>QUOTE</QuoteMark>
-      <Body>
-        인생은 모두가
+    <Wrapper>
+      <Image src={Flower} data-aos="fade-up" />
+      <Content data-aos="fade-up">
+        장담하건대. 세상이 다 겨울이어도
         <br />
-        함께 하는 여행이다.
+        우리 사랑은 늘봄처럼 따뜻하고
         <br />
-        매일매일 사는 동안
+        간혹, 여름처럼 뜨거울 겁니다
         <br />
-        우리가 할 수 있는 건
         <br />
-        최선을 다해
+        - 이수동, (사랑가) -
         <br />
-        이 멋진 여행을 만끽하는 것이다.
-      </Body>
-      <Author>— 영화, 어바웃타임 —</Author>
-    </Card>
-  </Wrapper>
+        <br />
+      </Content>
+    </Wrapper>
 );
 
 export default Quote;
