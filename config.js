@@ -9,9 +9,9 @@ export const WEDDING_LOCATION = "규수당 문래";
 export const GROOM_NAME = "김윤겸";
 export const GROOM_ACCOUNT_NUMBER = "카카오뱅크 3333-06-9532287";
 export const GROOM_FATHER_NAME = "김영석";
-export const GROOM_FATHER_ACCOUNT_NUMBER = "○○은행 ***-***-******";
+export const GROOM_FATHER_ACCOUNT_NUMBER = "국민은행 752601-04-101241";
 export const GROOM_MOTHER_NAME = "조현중";
-export const GROOM_MOTHER_ACCOUNT_NUMBER = "○○은행 ***-***-******";
+export const GROOM_MOTHER_ACCOUNT_NUMBER = "신한은행 110-091-336010";
 
 export const BRIDE_NAME = "박채린";
 export const BRIDE_ACCOUNT_NUMBER = "국민은행 882602-04-113423";
