@@ -168,6 +168,7 @@ const Gallery = () => {
       <Wrapper>
         <SectionLabel no="02" en="GALLERY" kr="우리의 순간들" />
         <ImageGallery
+            lazyLoad
             showPlayButton={false}
             showFullscreenButton={false}
             items={images}

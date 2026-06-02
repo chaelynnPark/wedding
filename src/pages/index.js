@@ -185,7 +185,7 @@ const IndexPage = () => {
       duration: 1200,
       once: true,
     });
-  });
+  }, []);
 
   return (
     <Wrapper>
@@ -193,7 +193,7 @@ const IndexPage = () => {
         <source src={Song} />
       </audio>
       <Splash>
-        <SplashImage src={GalleryPhoto6} alt="" />
+        <SplashImage src={GalleryPhoto6} alt="" decoding="async" fetchpriority="high" />
         <SplashOverlay />
         <Frame />
         <TopLabel>
