@@ -21,6 +21,7 @@ import {
 
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { Analytics } from "@vercel/analytics/react";
 
 const { Footer } = Layout;
 
@@ -228,6 +229,7 @@ const IndexPage = () => {
           <span>MADE WITH ♥</span>
         </FootRow>
       </StyledFooter>
+      <Analytics />
     </Wrapper>
   );
 };
